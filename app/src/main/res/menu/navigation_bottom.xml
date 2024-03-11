@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:id="@+id/itHome"
+        android:title="Trang chủ"
+        android:icon="@drawable/home"
+        />
+
+    <item android:id="@+id/itList"
+        android:title="Hoat động"
+        android:icon="@drawable/activity"
+        />
+    <item android:id="@+id/itPost"
+        android:title="Thêm"
+        android:icon="@drawable/ic_add"
+        />
+
+    <item android:id="@+id/itNotify"
+        android:title="Thông báo"
+        android:icon="@drawable/bells"
+        />
+    <item android:id="@+id/itAccount"
+        android:title="Tài khoản"
+        android:icon="@drawable/account"
+        />
+
+</menu>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.PostFragment"
+    android:background="#F85D2D"
+    >
+
+    <Spinner
+        android:id="@+id/spinnerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_edit_text"
+        android:padding="15dp"
+        android:hint="Loại công việc"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerJob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:padding="15dp"
+        android:hint="Công việc"
+        app:layout_constraintTop_toBottomOf="@id/spinnerList"
+        />
+
+    <EditText
+        android:id="@+id/edtTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/spinnerJob"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:padding="15dp"
+        android:hint="Thời gian theo giờ"
+        android:inputType="number"
+        />
+   <TextView
+       android:id="@+id/tvTime"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintEnd_toEndOf="@id/edtTime"
+       app:layout_constraintBottom_toBottomOf="@id/edtTime"
+       app:layout_constraintTop_toTopOf="@id/edtTime"
+       android:layout_marginHorizontal="@dimen/dp16"
+       android:text="Giờ"
+       />
+
+    <EditText
+        android:id="@+id/tvMoney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edtTime"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:padding="15dp"
+        android:hint="Giá tiền"
+        android:inputType="number"
+
+        />
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/tvMoney"
+        app:layout_constraintTop_toTopOf="@id/tvMoney"
+        app:layout_constraintEnd_toEndOf="@id/tvMoney"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:text="VND"
+        />
+    <EditText
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:padding="15dp"
+        android:hint="Địa chỉ"
+        app:layout_constraintTop_toBottomOf="@id/tvMoney"
+        />
+
+    <EditText
+        android:id="@+id/tvDescribe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:padding="15dp"
+        android:hint="Mô tả"
+        app:layout_constraintTop_toBottomOf="@id/tvAddress"
+        />
+
+    <Button
+        android:id="@+id/btPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng bài"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDescribe"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

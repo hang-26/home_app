@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">HomeApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="spinner_list">
+        <item>Dọn dẹp</item>
+        <item>Sửa chữa</item>
+        <item>Nấu ăn</item>
+    </string-array>
+
+    <string-array name="spinner_cleaning_job">
+        <item>Tổng vệ sinh văn phòng</item>
+        <item>Tổng vệ sinh nhà riêng</item>
+        <item>Vệ sinh sofa, rèm</item>
+    </string-array>
+
+    <string-array name="spinner_cooking_job">
+        <item>Nấu ăn cho trẻ</item>
+        <item>Nấu ăn cho gia đình</item>
+        <item>Nấu cỗ, tiệc</item>
+    </string-array>
+
+    <string-array name="spinner_fixing_job">
+        <item>Sửa chữa máy lạnh</item>
+        <item>Vệ sinh máy lạnh</item>
+        <item>Sửa chữa đường ống nước</item>
+        <item>Sửa điện</item>
+    </string-array>
+
+</resources>
