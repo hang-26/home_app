@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.DetailPostFragment">
-
-    <ImageView
-        android:id="@+id/imvContent"
+    tools:context="com.example.pay.CompleteActivity">
+    <TextView
+        android:id="@+id/tvLable"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/cafesua1"
-        app:layout_constraintHeight_percent="0.2"
-    />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/dp8"
+        android:background="@color/custom_color_secondary"
+        android:text="Xác nhận thanh toán"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp18"
+        android:textColor="@color/white"
+        />
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvContent"
-        app:layout_constraintStart_toStartOf="@id/imvContent"
-        app:layout_constraintEnd_toEndOf="@id/imvContent"
+        app:layout_constraintTop_toBottomOf="@id/tvLable"
+        app:layout_constraintStart_toStartOf="@id/tvLable"
+        app:layout_constraintEnd_toEndOf="@id/tvLable"
         android:layout_marginHorizontal="@dimen/dp16"
-        android:layout_marginVertical="@dimen/dp8"
+        android:layout_marginVertical="@dimen/dp16"
         android:text="nội dung"
         android:textStyle="bold"
         android:textSize="@dimen/sp20"
@@ -51,7 +55,7 @@
         app:layout_constraintTop_toTopOf="@id/tvPrice"
         app:layout_constraintStart_toEndOf="@id/tvPrice"
         android:textStyle="bold"
-        android:text="Thoiwf gian"
+        android:text="Thời gian"
         />
 
     <TextView
@@ -76,14 +80,30 @@
         app:layout_constraintTop_toBottomOf="@id/tvCate"
         android:layout_marginVertical="@dimen/dp8"
         android:textStyle="bold"
-        android:text="DDiaj chir"
+        android:text="Địa chỉ"
+
+        />
+
+    <TextView
+        android:id="@+id/tvState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvAddress"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="@dimen/dp16"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:text="trạng thái"
+        android:textSize="@dimen/sp20"
+        android:textStyle="bold"
+        android:elevation="@dimen/dp1"
         />
     <TextView
         android:id="@+id/tvDescribeLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvAddress"
-        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toBottomOf="@id/tvState"
+        app:layout_constraintStart_toStartOf="@id/tvState"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/dp16"
         android:layout_marginHorizontal="@dimen/dp16"
@@ -92,6 +112,8 @@
         android:textStyle="bold"
         android:elevation="@dimen/dp1"
         />
+
+
 
     <TextView
         android:id="@+id/tvDescribe"
@@ -105,20 +127,20 @@
         android:padding="@dimen/dp8"
         app:layout_constraintHeight_percent="0.3"
         android:text="Nội dung mô tả"
+        android:textColor="#CCC6C6"
         android:textSize="@dimen/sp20"
         android:textStyle="bold"
         android:elevation="@dimen/dp1"
         android:background="@drawable/custom_item_describle_content"
         />
     <Button
-        android:id="@+id/btnWork"
+        android:id="@+id/btnConfirmPayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvDescribe"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:text="Nhận việc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="@color/custom_color_secondary"
+        android:text="Xác đã nhận thanh toán"
+
         />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

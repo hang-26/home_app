@@ -5,6 +5,7 @@ class PostData(
     var postName: String? = null,
     var cateId: String? = null,
     var userPostId: String? = null,
+//    var userPostName: String? = null,
     var address: String? = null,
     var userWorkId: String? = null,
     var timeWork: String? = null,

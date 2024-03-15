@@ -14,8 +14,11 @@ import com.example.homeapp.data.PostData
 import com.example.homeapp.databinding.FragmentPostBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 
@@ -161,10 +164,14 @@ class PostFragment : Fragment() {
         var current = auth.currentUser
         Log.d(javaClass.simpleName, "onCreateView: $current")
         if (current != null) {
+
             val userId = current.uid
+
             Log.d(javaClass.simpleName, "setPost: userId = $userId")
             val postId = daRef.push().key
             Log.d(javaClass.simpleName, "setPost: $postId")
+
+
 
             var time = binding.edtTime.text.toString()
             var priceString = binding.tvMoney.text.toString()
@@ -202,49 +209,5 @@ class PostFragment : Fragment() {
     }
 
 
-//
-//    fun post() {
-//
-//        auth = Firebase.auth
-//        daRef = FirebaseDatabase.getInstance().getReference("Post")
-//
-//        var current = auth.currentUser
-//        Log.d(javaClass.simpleName, "onCreateView: $current")
-//        if (current != null) {
-//            val userId = current.uid
-//            Log.d(javaClass.simpleName, "setPost: userId = $userId")
-//            val postId = daRef.push().key
-//            Log.d(javaClass.simpleName, "setPost: $postId")
-//
-//            var cateWork = binding.tvList.text.toString()
-//            var jobName = binding.tvJob.text.toString()
-//            var time = binding.tvTime.text.toString()
-//            var priceString = binding.tvMoney.text.toString()
-//            var describe = binding.tvDescribe.text.toString()
-//            var address = binding.tvAddress.text.toString()
-//
-//            if (cateWork.isEmpty() || jobName.isEmpty() || time.isEmpty() || priceString.isEmpty() || address.isEmpty()) {
-//                Toast.makeText(context, " Không được để trống thông tin", Toast.LENGTH_SHORT).show()
-//            } else {
-//                var price = priceString.toDouble()
-//                Log.d(javaClass.simpleName, "setPost: $price")
-//
-//
-//                val post = PostData( postId, jobName, cateWork, userId, address, null, time, price, "Đang chờ", 0f, 0f, describe)
-//                Log.d(javaClass.simpleName, "setPost: $post")
-//                daRef.child(postId!!).setValue(post)
-//                    .addOnCompleteListener {
-//                        if (it.isSuccessful) {
-//                            Log.d(javaClass.simpleName, "setPost: Thành công")
-//                        }
-//                    }
-//            }
-//
-//
-//
-//        }
-//
-//
-//    }
 
 }

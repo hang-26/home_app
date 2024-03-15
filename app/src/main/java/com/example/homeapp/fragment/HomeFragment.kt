@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
         nameList.add(ListNameData(R.drawable.ic_clean, "Dọn dẹp"))
         nameList.add(ListNameData(R.drawable.ic_cooking, "Nấu ăn"))
-        nameList.add(ListNameData(R.drawable.ic_clean, "Dọn dẹp"))
+        nameList.add(ListNameData(R.drawable.ic_clean, "Sửa chữa"))
         // Inflate the layout for this fragment
         setViewList()
         getDataPost()
@@ -54,6 +54,10 @@ class HomeFragment : Fragment() {
         listAdapter =  ItemListAdapter( nameList, object: ItemListNameInterface {
             override fun onClick(position: Int) {
                 setOnClickList(position)
+            }
+
+            override fun updateOnClick(position: Int) {
+                TODO("Not yet implemented")
             }
         })
 
@@ -90,6 +94,10 @@ class HomeFragment : Fragment() {
                 setOnClickListPosition(position)
             }
 
+            override fun updateOnClick(position: Int) {
+
+            }
+
         })
 
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -103,10 +111,9 @@ class HomeFragment : Fragment() {
         var query = dataReference.child("Post")
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                postList. clear()
                 if (snapshot.exists()) {
                     for (postSnap in snapshot.children) {
-//                        var id = posSnap.child("postId").value as String
-//                        var postContent = posSnap.child("postName").value as String
 
                         val postId = postSnap.child("postId").value as String
                         val address = postSnap.child("address").value as String
@@ -116,10 +123,13 @@ class HomeFragment : Fragment() {
                         val userPostId = postSnap.child("userPostId").value.toString()
                         val state = postSnap.child("state").value as String
 
+//                        val userNamePost = postSnap.child("userNamePost").value.toString()
                         Log.d(javaClass.simpleName, "onDataChange: $userPostId")
                         Log.d(javaClass.simpleName, "onDataChange: $address")
+//                        postList.add(StatusDataClass(postId,postName, state,userNamePost, price ))
+//                        setPost()
 
-                        // Truy vaasn tên theo idUser
+//                         Truy vaasn tên theo idUser
                         val userReference = dataReference.child("Users")
                         var queryUsers = userReference.child(userPostId)
                         queryUsers.addListenerForSingleValueEvent(object : ValueEventListener {

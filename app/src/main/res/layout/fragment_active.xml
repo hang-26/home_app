@@ -6,29 +6,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ActiveFragment">
 
-    <TextView
-        android:id="@+id/tvLabel"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/navigation"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginVertical="@dimen/dp8"
-        android:gravity="center_horizontal"
-        android:text="Bài đăng của bạn"
-        android:textStyle="bold"
-        android:textSize="@dimen/sp18"
-        android:textColor="@color/black"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginVertical="@dimen/dp8"
-        android:layout_marginHorizontal="@dimen/dp16"
-
+        app:menu="@menu/item_button_post"
+        android:background="@color/custom_color_secondary"
         />
+
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/navigation"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginVertical="@dimen/dp8"-->
+<!--        android:layout_marginHorizontal="@dimen/dp16"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

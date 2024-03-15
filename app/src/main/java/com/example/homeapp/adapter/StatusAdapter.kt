@@ -1,12 +1,19 @@
 package com.example.homeapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.databinding.ItemListNameBinding
 import com.example.homeapp.databinding.ItemStatusBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 class StatusAdapter(
                     var list: MutableList<StatusDataClass>,
@@ -15,7 +22,8 @@ class StatusAdapter(
 {
     lateinit var binding: ItemStatusBinding
 
-
+    lateinit var auth: FirebaseAuth
+    lateinit var databaseReference: DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderStatus {
         val view = LayoutInflater.from(parent.context)
@@ -28,12 +36,16 @@ class StatusAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolderStatus, position: Int) {
+
+
+
         var listPost = list[holder.adapterPosition]
         val bindingHolder = holder.binding
         bindingHolder.tvUserPost.text = listPost.namePost
         bindingHolder.tvContent.text = listPost.postName
         bindingHolder.tvState.text = listPost.state
         bindingHolder.tvPrice.text = listPost.price.toString()
+
 
         holder.itemView.setOnClickListener {
             onClick.onClick(holder.adapterPosition)
@@ -42,4 +54,10 @@ class StatusAdapter(
 
     class ViewHolderStatus( val binding: ItemStatusBinding):
         RecyclerView.ViewHolder(binding.root)
+
+    fun upDateData(position: Int) {
+        databaseReference = FirebaseDatabase.getInstance().reference
+
+    }
+
 }
