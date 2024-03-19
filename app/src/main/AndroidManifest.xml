@@ -19,7 +19,7 @@
             android:name="com.example.pay.CompleteActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.account.InForAccounActivity"
+            android:name="com.example.account.InfoAccountActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

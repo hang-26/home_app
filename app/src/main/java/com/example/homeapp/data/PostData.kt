@@ -1,5 +1,9 @@
 package com.example.homeapp.data
 
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
+
+
 class PostData(
     var postId: String? = null,
     var postName: String? = null,
@@ -15,5 +19,6 @@ class PostData(
     var rateUWork: Float? = null,
     var describe: String? = null
 ) {
+
 
 }

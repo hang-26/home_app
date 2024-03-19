@@ -38,8 +38,8 @@
         app:layout_constraintTop_toBottomOf="@id/tvName"
         app:layout_constraintStart_toStartOf="@id/tvName"
         android:text="Điểm đánh gía"
-
         />
+
     <TextView
         android:id="@+id/tvManage"
         android:layout_height="wrap_content"

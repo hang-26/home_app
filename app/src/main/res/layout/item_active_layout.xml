@@ -6,7 +6,7 @@
     android:layout_marginVertical="@dimen/dp8"
     android:paddingBottom="@dimen/dp8"
     android:elevation="@dimen/dp20"
-    android:background="@drawable/custom_item_describle_content">
+    >
 
     <ImageView
         android:id="@+id/ivmAvatar"
@@ -40,7 +40,6 @@
         android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
         android:padding="@dimen/dp8"
-        android:textStyle="bold"
         />
 
     <TextView
@@ -66,10 +65,7 @@
         android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
         android:padding="@dimen/dp8"
-        android:gravity="center_horizontal"
-        android:background="@color/custom_color_secondary"
         android:text="Trạng thái"
-        android:textColor="@color/white"
         />
 
 

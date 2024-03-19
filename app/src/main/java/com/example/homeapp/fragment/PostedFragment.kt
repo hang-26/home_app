@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
 import com.example.homeapp.adapter.StatusAdapter
 import com.example.homeapp.data.StatusDataClass
@@ -26,7 +27,7 @@ class PostedFragment : Fragment() {
 
     lateinit var binding: FragmentPostedBinding
 
-    lateinit var myPostAdapter: StatusAdapter
+    lateinit var myPostAdapter: ActiveAdapter
     var statusList = mutableListOf<StatusDataClass>()
 
     lateinit var dataBaseReference: DatabaseReference
@@ -96,7 +97,7 @@ class PostedFragment : Fragment() {
 
     fun setRecyclerView() {
         val recyclerView = binding.recyclerView
-        myPostAdapter = StatusAdapter(statusList, object : ItemListNameInterface
+        myPostAdapter = ActiveAdapter(statusList, object : ItemListNameInterface
         {
             override fun onClick(position: Int) {
                 setOnClickListPosition(position)

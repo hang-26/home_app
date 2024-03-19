@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/icEdit"
+        android:title="Sửa thông tin"
+        />
+    <item android:id="@+id/itChangePass"
+        android:title="Đổi mật khẩu"
+        />
+
+</menu>

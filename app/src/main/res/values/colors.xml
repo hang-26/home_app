@@ -12,6 +12,6 @@
     <color name="grey_two">#575454</color>
     <!--Custom Color-->643AE7
     <color name="custom_color_secondary">#FF8F00</color>
-    <color name="custom_color_content">#FFAA3D</color>
+    <color name="custom_color_content">#F5A948</color>
     <color name="custom_color_text_secondary">#52514F</color>
 </resources>

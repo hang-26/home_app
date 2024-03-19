@@ -1,19 +1,16 @@
 package com.example.homeapp.fragment
 
-import android.app.UiAutomation
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.account.InForAccounActivity
+import com.example.account.InfoAccountActivity
 import com.example.homeapp.R
 import com.example.homeapp.databinding.FragmentAccountBinding
 import com.example.homeapp.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -97,7 +94,7 @@ class AccountFragment : Fragment() {
 
 
     fun inForAccount() {
-        var intent = Intent(context, InForAccounActivity::class.java)
+        var intent = Intent(context, InfoAccountActivity::class.java)
         startActivity(intent)
     }
 
