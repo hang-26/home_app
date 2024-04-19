@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="@dimen/dp8"
     android:paddingBottom="@dimen/dp8"
-    android:elevation="@dimen/dp20"
+    android:elevation="@dimen/_50dp"
+    android:background="@drawable/custom_item_describle_content"
     >
 
     <ImageView
@@ -28,28 +29,24 @@
         app:layout_constraintBottom_toBottomOf="@id/ivmAvatar"
         android:layout_marginHorizontal="@dimen/dp16"
         android:text="Tên người dùng"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/tvContent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/ivmAvatar"
         app:layout_constraintStart_toStartOf="@id/ivmAvatar"
-        app:layout_constraintEnd_toEndOf="@id/ivmAvatar"
-        android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
-        android:padding="@dimen/dp8"
         />
 
     <TextView
         android:id="@+id/tvPrice"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvContent"
         app:layout_constraintStart_toStartOf="@id/tvContent"
-        app:layout_constraintEnd_toEndOf="@id/tvContent"
-        android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
         android:text="Gias"
         android:textStyle="bold"
@@ -58,13 +55,13 @@
 
     <TextView
         android:id="@+id/tvState"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvPrice"
         app:layout_constraintStart_toStartOf="@id/tvPrice"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:layout_marginVertical="@dimen/dp8"
         android:padding="@dimen/dp8"
+        android:layout_marginVertical="@dimen/dp8"
+        android:background="@drawable/custom_content"
         android:text="Trạng thái"
         />
 

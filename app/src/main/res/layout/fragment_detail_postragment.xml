@@ -14,19 +14,47 @@
         android:background="@color/cafesua1"
         app:layout_constraintHeight_percent="0.2"
     />
+    <TextView
+        android:id="@+id/tvUserPost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/imvContent"
+        app:layout_constraintStart_toStartOf="@id/imvContent"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:text="Tên người đăng"
+        android:textSize="@dimen/dp20"
+        android:textStyle="bold"
+        app:layout_constraintWidth_percent="0.475"
+        />
+    <TextView
+        android:id="@+id/tvNumUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tvUserPost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvUserPost"
+        app:layout_constraintBottom_toBottomOf="@id/tvUserPost"
+        android:layout_marginHorizontal="@dimen/dp8"
+        android:text="Số điện thoại"
+        android:textSize="@dimen/dp16"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintWidth_percent="0.4"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvContent"
+        app:layout_constraintTop_toBottomOf="@id/tvUserPost"
         app:layout_constraintStart_toStartOf="@id/imvContent"
         app:layout_constraintEnd_toEndOf="@id/imvContent"
         android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
         android:text="nội dung"
         android:textStyle="bold"
-        android:textSize="@dimen/sp20"
+        android:textSize="@dimen/sp18"
         />
 
     <TextView
@@ -51,7 +79,7 @@
         app:layout_constraintTop_toTopOf="@id/tvPrice"
         app:layout_constraintStart_toEndOf="@id/tvPrice"
         android:textStyle="bold"
-        android:text="Thoiwf gian"
+        android:text="Thời gian"
         />
 
     <TextView
@@ -88,7 +116,6 @@
         android:layout_marginVertical="@dimen/dp16"
         android:layout_marginHorizontal="@dimen/dp16"
         android:text="Mô tả"
-        android:textSize="@dimen/sp20"
         android:textStyle="bold"
         android:elevation="@dimen/dp1"
         />
@@ -105,7 +132,6 @@
         android:padding="@dimen/dp8"
         app:layout_constraintHeight_percent="0.3"
         android:text="Nội dung mô tả"
-        android:textSize="@dimen/sp20"
         android:textStyle="bold"
         android:elevation="@dimen/dp1"
         android:background="@drawable/custom_item_describle_content"

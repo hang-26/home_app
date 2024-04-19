@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.account.InfoAccountActivity">
+    tools:context="com.example.account.UserAccounActivity">
 
     <ImageView
         android:id="@+id/imvBackgroundAvatar"
@@ -18,15 +18,6 @@
         />
 
     <ImageView
-        android:id="@+id/imvSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:src="@drawable/ic_setting"
-        />
-    <ImageView
         android:id="@+id/imvAvatar"
         android:layout_width="@dimen/dp100"
         android:layout_height="@dimen/dp100"
@@ -38,6 +29,7 @@
         android:src="@drawable/icon_user"
         android:background="@color/white"
         />
+
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
@@ -59,6 +51,7 @@
         android:src="@drawable/icon_location"
         android:layout_marginHorizontal="@dimen/dp16"
         />
+
     <TextView
         android:id="@+id/tvAddress"
         android:layout_width="wrap_content"
@@ -70,34 +63,15 @@
         app:layout_constraintBottom_toBottomOf="@id/imvAddress"
         android:layout_marginLeft="10dp"
         />
-    <ImageView
-        android:id="@+id/imvPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/imvAddress"
-        app:layout_constraintTop_toBottomOf="@id/imvAddress"
-        android:src="@drawable/icon_phone_black"
-        />
-    <TextView
-        android:id="@+id/tvPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/imvPhoneNumber"
-        app:layout_constraintStart_toEndOf="@id/imvAddress"
-        app:layout_constraintBottom_toBottomOf="@id/imvPhoneNumber"
-        android:text="0367674891"
-        />
 
     <TextView
         android:id="@+id/tvRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvPhoneNumber"
-        app:layout_constraintStart_toStartOf="@id/imvPhoneNumber"
-        android:layout_marginHorizontal="@dimen/dp16"
+        app:layout_constraintTop_toBottomOf="@id/imvAddress"
+        app:layout_constraintStart_toStartOf="@id/imvAddress"
         android:text="Đánh giá: "
         />
-
     <ImageView
         android:id="@+id/imvRate1"
         android:layout_width="wrap_content"
@@ -105,10 +79,45 @@
         app:layout_constraintStart_toEndOf="@id/tvRate"
         app:layout_constraintTop_toTopOf="@id/tvRate"
         app:layout_constraintBottom_toBottomOf="@id/tvRate"
+        android:layout_marginHorizontal="@dimen/dp16"
         android:src="@drawable/rating_full"
         />
-
-
+    <ImageView
+        android:id="@+id/imvRate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate1"
+        app:layout_constraintTop_toTopOf="@id/tvRate"
+        app:layout_constraintBottom_toBottomOf="@id/tvRate"
+        android:src="@drawable/rating_full"
+        />
+    <ImageView
+        android:id="@+id/imvRate3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate2"
+        app:layout_constraintTop_toTopOf="@id/tvRate"
+        app:layout_constraintBottom_toBottomOf="@id/tvRate"
+        android:src="@drawable/rating_full"
+        />
+    <ImageView
+        android:id="@+id/imvRate4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate3"
+        app:layout_constraintTop_toTopOf="@id/tvRate"
+        app:layout_constraintBottom_toBottomOf="@id/tvRate"
+        android:src="@drawable/rating_full"
+        />
+    <ImageView
+        android:id="@+id/imvRate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate4"
+        app:layout_constraintTop_toTopOf="@id/tvRate"
+        app:layout_constraintBottom_toBottomOf="@id/tvRate"
+        android:src="@drawable/rating_full"
+        />
 
 
     <TextView
@@ -125,6 +134,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -135,13 +145,5 @@
         android:layout_marginVertical="@dimen/dp8"
         />
 
-    <ImageView
-        android:layout_width="56dp"
-        android:layout_height="44dp"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:layout_marginVertical="@dimen/dp40"
-        android:elevation="@dimen/dp16"
-        android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

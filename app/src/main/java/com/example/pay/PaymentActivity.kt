@@ -2,6 +2,7 @@ package com.example.pay
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.homeapp.R
@@ -42,7 +43,7 @@ class PaymentActivity : AppCompatActivity() {
                 var cate = snapshot.child("cateId").value as String
                 var postId = snapshot.child("postId").value as String
 
-                var userWorkerId = snapshot.child("userPostId").value as String
+                var userPostId = snapshot.child("userPostId").value as String
 
                 binding.tvContent.text = postContent
                 binding.tvPrice.text = "$price VNĐ"
@@ -51,14 +52,34 @@ class PaymentActivity : AppCompatActivity() {
                 binding.tvAddress.text = address
                 binding.tvCate.text = cate
                 binding.tvState.text = state
-                if (state == "Đã được nhận") {
-                    binding.btnConfirm.setText("Xác nhận hoàn thành công việc")
-                    binding.btnConfirm.setOnClickListener {
-                        setEventPay(postId)
+
+                var userWokData = FirebaseDatabase.getInstance().reference.child("Users")
+                var queryUser = userWokData.child(userPostId )
+
+                queryUser.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                        if (snapshot.exists()) {
+                            var userNamePost = snapshot.child("userName").value as String
+                            Log.d(javaClass.simpleName, "onDataChange: $userNamePost")
+                            binding.tvWorkerName.text = "Người đăng việc: $userNamePost"
+                        }
                     }
-                } else {
-                    binding.btnConfirm.visibility = View.GONE
-                }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+
+//                if (state == "Đã được nhận") {
+//                    binding.btnConfirm.setText("Xác nhận hoàn thành công việc")
+//                    binding.btnConfirm.setOnClickListener {
+//                        setEventPay(postId)
+//                    }
+//                } else {
+//                    binding.btnConfirm.visibility = View.GONE
+//                }
 
 
             }
@@ -70,11 +91,11 @@ class PaymentActivity : AppCompatActivity() {
         })
     }
 
-    fun setEventPay(id: String) {
-        var update = detailPost.child("Post").child(id).child("state").setValue("Đã thanh toán")
-        update.addOnSuccessListener {
-            Toast.makeText(this, "Cảm ơn bạn đã xác nhận thanh toán", Toast.LENGTH_SHORT).show()
-            finish()
-        }
-    }
+//    fun setEventPay(id: String) {
+//        var update = detailPost.child("Post").child(id).child("state").setValue("Đã hoàn thành")
+//        update.addOnSuccessListener {
+//            Toast.makeText(this, "Cảm ơn bạn đã xác nhận thanh toán", Toast.LENGTH_SHORT).show()
+//            finish()
+//        }
+//    }
 }

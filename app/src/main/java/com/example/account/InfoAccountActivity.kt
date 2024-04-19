@@ -10,10 +10,12 @@ import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homeapp.MainActivity
 import com.example.homeapp.R
 import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
 import com.example.homeapp.data.StatusDataClass
+import com.example.homeapp.data.UserData
 import com.example.homeapp.databinding.ActivityInfoAccountBinding
 import com.example.homeapp.databinding.UserEditBinding
 import com.example.pay.CompleteActivity
@@ -66,6 +68,7 @@ class InfoAccountActivity : AppCompatActivity() {
                     binding.tvPhoneNumber.text = numberPhone
                     binding.tvRate.text = "Đánh giá: $rate"
                     binding.tvUserName.text = name
+
 
                 }
             }
@@ -195,16 +198,18 @@ class InfoAccountActivity : AppCompatActivity() {
         var address = bindingEdit.edtAddress
         var numberPhone = bindingEdit.edtPhone
 
+
+
         val editUser = AlertDialog.Builder(this)
             .setView(viewItem)
         editUser.setPositiveButton("Đồng ý") {
                 dialog,_->
-            var name = binding.tvUserName.text.toString()
-            var age = bindingEdit.edtAge.text.toString()
-            var adress = bindingEdit.edtAge.text.toString()
-            var numberPhone = bindingEdit.edtPhone.text.toString()
+            var uName = userName.text.toString()
+            var uAge = age.text.toString()
+            var uAddress = address.text.toString()
+            var uNumberPhone = numberPhone.text.toString()
 
-            updateAccount()
+            updateAccount(uName, uAge, uAddress, uNumberPhone)
         }
         editUser.setNegativeButton("Hủy") {
                 dialog,_->
@@ -216,7 +221,17 @@ class InfoAccountActivity : AppCompatActivity() {
         editUser.show()
     }
 
-    fun updateAccount() {
+    fun updateAccount(userName: String, age: String, address: String, numberPhone: String) {
+        var uId = auth.currentUser?.uid
+        var  user = UserData(userName,age, address,numberPhone)
+        var update = databaseReference.child("Users").child(uId!!).setValue(user)
+        update.addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(this, "Cập nhật người dùng thành công", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
     }
 }

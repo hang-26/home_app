@@ -15,7 +15,9 @@ class FragmentAdapter(fragmentActivity: ActiveFragment) : FragmentStateAdapter(f
             }
             1 -> {
                 return WorkedFragment()
-            } else -> {return PostedFragment()}
+            } else -> {
+                return PostedFragment()
+            }
 
         }
     }

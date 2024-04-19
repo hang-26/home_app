@@ -6,6 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ListCateFragment">
 
+    <TextView
+        android:id="@+id/tvLabel"
+        android:text="Danh sách các công việc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginVertical="@dimen/dp8"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp18"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -13,7 +25,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLabel"
+        android:layout_marginVertical="@dimen/dp16"
         />
 
 

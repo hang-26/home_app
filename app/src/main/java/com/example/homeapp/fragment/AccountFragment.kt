@@ -71,7 +71,20 @@ class AccountFragment : Fragment() {
                     var rateString = snapshot.child("rate"). value
 
                     binding.tvName.text = userName
-                    binding.tvRating.text = rateString.toString()
+                    binding.tvRating.text = "Đánh giá $rateString"
+                    if (rateString != null) {
+                        var rate = rateString.toString().toFloat()
+                        setRate(rate)
+                    }
+//                    else {
+//                        binding.tvRating.text = "Chưa có đánh giá"
+////                        binding.imvRate1.visibility = View.GONE
+////                        binding.imvRate2.visibility = View.GONE
+////                        binding.imvRate3.visibility = View.GONE
+////                        binding.imvRate4.visibility = View.GONE
+////                        binding.imvRate5.visibility = View.GONE
+//                    }
+
 
                 }
             }
@@ -109,5 +122,62 @@ class AccountFragment : Fragment() {
         activity?.finish()
     }
 
+    fun setRate(rate: Float) {
+       if (rate == 1f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_no)
+           binding.imvRate3.setImageResource(R.drawable.rating_no)
+           binding.imvRate4.setImageResource(R.drawable.rating_no)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       } else if(1f< rate && rate < 2f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_not_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_no)
+           binding.imvRate4.setImageResource(R.drawable.rating_no)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       } else if( rate == 2f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_no)
+           binding.imvRate4.setImageResource(R.drawable.rating_no)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       } else if(2f< rate && rate < 3f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_not_full)
+           binding.imvRate4.setImageResource(R.drawable.rating_no)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       } else if(rate == 3f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_full)
+           binding.imvRate4.setImageResource(R.drawable.rating_no)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       } else if(3f< rate && rate < 4f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_full)
+           binding.imvRate4.setImageResource(R.drawable.rating_not_full)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       } else if( rate == 4f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_full)
+           binding.imvRate4.setImageResource(R.drawable.rating_full)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       }else if(4f< rate && rate < 5f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_full)
+           binding.imvRate4.setImageResource(R.drawable.rating_not_full)
+           binding.imvRate5.setImageResource(R.drawable.rating_no)
+       }else if( rate == 5f) {
+           binding.imvRate1.setImageResource(R.drawable.rating_full)
+           binding.imvRate2.setImageResource(R.drawable.rating_full)
+           binding.imvRate3.setImageResource(R.drawable.rating_full)
+           binding.imvRate4.setImageResource(R.drawable.rating_full)
+           binding.imvRate5.setImageResource(R.drawable.rating_full)
+       }
+    }
 
 }

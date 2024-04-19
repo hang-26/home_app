@@ -1,58 +1,79 @@
-package com.example.homeapp.fragment
+package com.example.account
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.R
+import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
-import com.example.homeapp.adapter.StatusAdapter
 import com.example.homeapp.data.StatusDataClass
-import com.example.homeapp.databinding.FragmentListCateBinding
+import com.example.homeapp.databinding.ActivityUserAccounBinding
+import com.example.pay.CompleteActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 
+class UserAccounActivity : AppCompatActivity() {
 
-class ListCateFragment : Fragment() {
-
-    lateinit var binding: FragmentListCateBinding
-    lateinit var database: DatabaseReference
-
-    lateinit var statusAdapter: StatusAdapter
+    private lateinit var binding: ActivityUserAccounBinding
+    lateinit var databaseReference: DatabaseReference
+    lateinit var myPostAdapter: ActiveAdapter
     var statusList = mutableListOf<StatusDataClass>()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentListCateBinding.inflate(layoutInflater, container, false)
+    var userId: String? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityUserAccounBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val bundle = arguments
-        if (bundle != null) {
-            val title = bundle.getString("key")
+        databaseReference = FirebaseDatabase.getInstance().reference
+        var intentAccount = intent
+        userId = intentAccount.getStringExtra("userPostId")
+        Log.d(javaClass.simpleName, "onCreate: $userId")
+        setViewActivity()
+        getData()
 
-            database = FirebaseDatabase.getInstance().reference
-            readDataFromCategory(title!!)
-        }
-        return binding.root
     }
 
-    fun readDataFromCategory(cate: String) {
-        val query: Query = database.child("Post").orderByChild("cateId").equalTo(cate)
-        
+    fun setViewActivity() {
+        var userDataReference = databaseReference.child("Users")
+        var query = userDataReference.child(userId!!)
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    var name = snapshot.child("userName").value as String
+                    var numberPhone = snapshot.child("numberPhone").value as String
+                    var rate = snapshot.child("rate").value
+                    var address = snapshot.child("userAddress").value as String
+                    Log.d(javaClass.simpleName, "onDataChange: $name")
+                    binding.tvAddress.text = address
+//                    binding.tvPhoneNumber.text = numberPhone
 
+                    binding.tvRate.text = "Đánh giá: $rate"
+                    binding.tvUserName.text = name
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getData() {
+        var dataPost = databaseReference.child("Post")
+        var query = dataPost.orderByChild("userPostId").equalTo(userId)
+
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
                     for (postSnap in snapshot.children) {
                         val postId = postSnap.child("postId").value as String
                         val address = postSnap.child("address").value as String
@@ -66,7 +87,7 @@ class ListCateFragment : Fragment() {
                         Log.d(javaClass.simpleName, "onDataChange: $address")
 
                         // Truy vaasn tên theo idUser
-                        val userReference = database.child("Users")
+                        val userReference = databaseReference.child("Users")
                         var queryUsers = userReference.child(userPostId)
                         queryUsers.addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
@@ -84,20 +105,20 @@ class ListCateFragment : Fragment() {
                         })
                     }
 
-
-
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
 
         })
     }
 
+
     fun setRecyclerView() {
         val recyclerView = binding.recyclerView
-        statusAdapter = StatusAdapter(statusList, object : ItemListNameInterface
+        myPostAdapter = ActiveAdapter(statusList, object : ItemListNameInterface
         {
             override fun onClick(position: Int) {
                 setOnClickListPosition(position)
@@ -108,30 +129,18 @@ class ListCateFragment : Fragment() {
             }
 
         })
-        val layoutManager = GridLayoutManager(context,2)
-        recyclerView.adapter = statusAdapter
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = myPostAdapter
         recyclerView.layoutManager = layoutManager
-
     }
 
     fun setOnClickListPosition(pos: Int) {
-        var fragmentDetailPostragment = DetailPostFragment()
-        var listPosition = statusList[pos]
-        var posId = listPosition.postId
-        Log.d(javaClass.simpleName, "setOnClickListPosition: $posId")
-        var bundle: Bundle = Bundle()
-        bundle.putString("id", posId)
-        fragmentDetailPostragment.arguments = bundle
-        sendDataToFragment(fragmentDetailPostragment)
-
+        var listPost = statusList[pos]
+        var postId = listPost.postId
+        var intent = Intent(this, CompleteActivity::class.java)
+        intent.putExtra("id", postId)
+        startActivity(intent)
     }
 
-    fun sendDataToFragment(fragment: Fragment) {
-        val fragmenManager = activity?.supportFragmentManager
-        val  fragmentTransaction = fragmenManager?.beginTransaction()
-
-        fragmentTransaction?.replace(R.id.layoutFragment, fragment )
-        fragmentTransaction?.commit()
-    }
 
 }

@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pay.CompleteActivity">
-
-
+    tools:context="com.example.pay.PaymentActivity">
     <TextView
         android:id="@+id/tvLable"
         android:layout_width="match_parent"
@@ -22,27 +19,11 @@
         android:textSize="@dimen/sp18"
         android:textColor="@color/white"
         />
-
-    <TextView
-        android:id="@+id/tvWorkerName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvLable"
-        app:layout_constraintStart_toStartOf="@id/tvLable"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginVertical="@dimen/dp16"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:text="Nguoi dang viec"
-        android:textSize="@dimen/sp20"
-        android:textStyle="bold"
-        android:elevation="@dimen/dp1"
-        />
-
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvWorkerName"
+        app:layout_constraintTop_toBottomOf="@id/tvLable"
         app:layout_constraintStart_toStartOf="@id/tvLable"
         app:layout_constraintEnd_toEndOf="@id/tvLable"
         android:layout_marginHorizontal="@dimen/dp16"
@@ -95,9 +76,10 @@
         android:id="@+id/tvAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintStart_toStartOf="@id/tvCate"
         app:layout_constraintTop_toBottomOf="@id/tvCate"
         android:layout_marginVertical="@dimen/dp8"
+        android:textStyle="bold"
         android:text="DDiaj chir"
         />
 
@@ -111,15 +93,31 @@
         android:layout_marginVertical="@dimen/dp16"
         android:layout_marginHorizontal="@dimen/dp16"
         android:text="trạng thái"
+        android:textSize="@dimen/sp20"
+        android:textStyle="bold"
         android:elevation="@dimen/dp1"
         />
 
+    <TextView
+        android:id="@+id/tvWorkerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvState"
+        app:layout_constraintStart_toStartOf="@id/tvState"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="@dimen/dp16"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:text="Nguoi nhan viec"
+        android:textSize="@dimen/sp20"
+        android:textStyle="bold"
+        android:elevation="@dimen/dp1"
+        />
 
     <TextView
         android:id="@+id/tvDescribeLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvState"
+        app:layout_constraintTop_toBottomOf="@id/tvWorkerName"
         app:layout_constraintStart_toStartOf="@id/tvState"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/dp16"
@@ -143,10 +141,69 @@
         android:padding="@dimen/dp8"
         app:layout_constraintHeight_percent="0.3"
         android:text="Nội dung mô tả"
+        android:textSize="@dimen/sp20"
+        android:textStyle="bold"
         android:elevation="@dimen/dp1"
         android:background="@drawable/custom_item_describle_content"
         />
 
+    <RadioGroup
+        android:id="@+id/radioGroupRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tvDescribe"
+        app:layout_constraintTop_toBottomOf="@id/tvDescribe"
+        android:layout_marginVertical="@dimen/dp8"
+        android:layout_marginHorizontal="@dimen/dp16"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:id="@+id/rbtRateOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_star"
+            />
+        <RadioButton
+            android:id="@+id/rbtRateTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            android:button="@drawable/ic_star"
+            />
+        <RadioButton
+            android:id="@+id/rbtRateThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_star"
+            android:layout_marginStart="@dimen/dp8"
+
+            />
+        <RadioButton
+            android:id="@+id/rbtRateFour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_star"
+            android:layout_marginStart="@dimen/dp8"
+
+            />
+        <RadioButton
+            android:id="@+id/rbtRateFive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_star"
+            android:layout_marginStart="@dimen/dp8"
+            />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="@color/custom_color_secondary"
+        android:text="Công việc đã hoàn thành"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

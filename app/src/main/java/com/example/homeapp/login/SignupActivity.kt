@@ -62,7 +62,7 @@ class SignupActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val userId = auth.currentUser?.uid
-                            var user = UserData(userId, userName, userDate, address, numberPhone, 0f)
+                            var user = UserData(userId!!, userName, userDate, address, numberPhone, 0f)
                             daRef.child(userId!!).setValue(user)
                                 .addOnCompleteListener {
                                     if (it.isSuccessful) {

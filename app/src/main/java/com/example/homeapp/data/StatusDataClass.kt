@@ -13,7 +13,7 @@ class StatusDataClass {
     var price: Double? = null;
     var state: String? = null;
     var rateUPost: Float? = null;
-    var rateUWork: Float? = null;
+    var rateUWork: Int? = null;
     var describe: String? = null;
 
     var namePost: String? = null;
@@ -29,7 +29,7 @@ class StatusDataClass {
                 price: Double?,
                 state: String?,
                 rateUPost: Float?,
-                rateUWork: Float?,
+                rateUWork: Int?,
                 describe: String?
     ) {
         this.postId = postId

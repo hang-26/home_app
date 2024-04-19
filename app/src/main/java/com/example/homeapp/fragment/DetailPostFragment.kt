@@ -1,11 +1,14 @@
 package com.example.homeapp.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.account.UserAccounActivity
 import com.example.homeapp.R
 import com.example.homeapp.databinding.FragmentDetailPostragmentBinding
 import com.google.firebase.auth.ktx.auth
@@ -15,6 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 
 class DetailPostFragment : Fragment() {
@@ -32,6 +36,8 @@ class DetailPostFragment : Fragment() {
             val idPost = bundle?.getString("id")
            getDataPost(idPost!!)
         }
+
+        clickListener()
 
         return binding.root
     }
@@ -57,9 +63,13 @@ class DetailPostFragment : Fragment() {
                 binding.tvContent.text = postContent
                 binding.tvPrice.text = price
                 binding.tvTimeWork.setText("$timeString giờ")
-                binding.tvDescribe.text = describe
                 binding.tvAddress.text = address
                 binding.tvCate.text = cate
+                if (describe.isEmpty()) {
+                    binding.tvDescribe.text = "Không có mô tả nào"
+                } else {
+                    binding.tvDescribe.text = describe
+                }
 
                 setHandlerEvent(postId, userPostId)
 
@@ -74,29 +84,81 @@ class DetailPostFragment : Fragment() {
     }
 
     fun setHandlerEvent(id: String, userPostId: String) {
-        binding.btnWork.setOnClickListener {
-            var auth = Firebase.auth
-            var uId = auth.currentUser?.uid
-            if (uId == userPostId) {
-                Toast.makeText(context,
-                    "Bạn không thể nhận công việc của mình",
-                    Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                val update = detailPost.child("Post").child(id)
-                update.child("state").setValue("Đã được nhận")
-                    .addOnSuccessListener {
 
-                    }
-                update.child("userWorkId").setValue(uId)
-                    .addOnCompleteListener {
-                        Toast.makeText(context, "Công việc đã được bạn nhận", Toast.LENGTH_SHORT).show()
-
-                    }
-
+        /**
+         * Lấy thông tin người đăng
+         */
+        var userData: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
+        var queryUser = userData.child(userPostId)
+        queryUser.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var userName = snapshot.child("userName").value as String
+                var numberPhone = snapshot.child("numberPhone").value as String
+                binding.tvUserPost.text = userName
+                binding.tvNumUser.text = numberPhone
             }
 
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
 
+        })
+
+        var auth = Firebase.auth
+        var uId = auth.currentUser?.uid
+        if (uId == userPostId) {
+            binding.btnWork.visibility = View.GONE
+        } else {
+            binding.btnWork.setOnClickListener {
+
+                    val update = detailPost.child("Post").child(id)
+                    update.child("state").setValue("Đã được nhận")
+                        .addOnSuccessListener {
+
+                        }
+                    update.child("userWorkId").setValue(uId)
+                        .addOnCompleteListener {
+                            Toast.makeText(context, "Công việc đã được bạn nhận", Toast.LENGTH_SHORT).show()
+                            binding.tvNumUser.visibility = View.VISIBLE
+                        }
+
+            }
+        }
+
+        binding.tvUserPost.setOnClickListener {
+            var intent: Intent = Intent(context, UserAccounActivity::class.java)
+            intent.putExtra("userPostId", userPostId)
+            startActivity(intent)
+        }
+
+
+//        binding.btnWork.setOnClickListener {
+//            var auth = Firebase.auth
+//            var uId = auth.currentUser?.uid
+//            if (uId == userPostId) {
+//                binding.btnWork.visibility = View.GONE
+//            } else {
+//
+//                val update = detailPost.child("Post").child(id)
+//                update.child("state").setValue("Đã được nhận")
+//                    .addOnSuccessListener {
+//
+//                    }
+//                update.child("userWorkId").setValue(uId)
+//                    .addOnCompleteListener {
+//                        Toast.makeText(context, "Công việc đã được bạn nhận", Toast.LENGTH_SHORT).show()
+//                        binding.tvNumUser.visibility = View.VISIBLE
+//                    }
+//
+//            }
+//
+//
+//        }
+    }
+
+    fun clickListener() {
+        binding.tvUserPost.setOnClickListener {
+            Log.d(javaClass.simpleName, "clickListener: dđ")
         }
     }
 

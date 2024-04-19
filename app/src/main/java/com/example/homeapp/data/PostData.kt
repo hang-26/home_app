@@ -16,7 +16,7 @@ class PostData(
     var price: Double? = null,
     var state: String? = null,
     var rateUPost: Float? = null,
-    var rateUWork: Float? = null,
+    var rateUWork: Int? = null,
     var describe: String? = null
 ) {
 

@@ -27,5 +27,49 @@
         <item>Sửa chữa đường ống nước</item>
         <item>Sửa điện</item>
     </string-array>
+    <!--Danh sách các quận-->
+    <string-array name="spinner_district">
+        <item>quận Hoàng Mai</item>
+        <item>quận Thanh Xuân</item>
+        <item>quận Đống Da</item>
+        <item>quận Hai Bà Trưng</item>
+    </string-array>
+    <!--Danh sách các phường trong quân Hoàng Mai-->
+    <string-array name="spinner_hm">
+        <item>phuờng Hoàng Văn Thụ</item>
+        <item>phường Mai Động</item>
+        <item>phường Tân Mai</item>
+        <item>phường Định Công</item>
+        <item>phường Đại Kim</item>
+        <item>phường Giáp Bát</item>
+        <item>phường Thịnh Liệt</item>
+        <item>phường Hoàng Liệt</item>
+    </string-array>
+    <!--    Danh sach các phường trong quâận Thanh Xuân-->
+    <string-array name="spinner_tx">
+        <item>phường Phương Liệt</item>
+        <item>phường Hạ Đình</item>
+        <item>phường Phương Mai</item>
+        <item>phường Khương Đình</item>
+        <item>phường Thượng Đình</item>
+    </string-array>
+    <!--    Danh sách các phường trong quân Đống Đa-->
+    <string-array name="spinner_dd">
+        <item>phường Văn Miếu</item>
+        <item>phường Văn Chương</item>
+        <item>phường Trung Tự</item>
+        <item>phường Quốc Tử Giám</item>
+        <item>phường Ô Chợ Dừa</item>
+        <item>phường Quốc Tử Giám</item>
+    </string-array>
+    <!--        Danh ssaschcasc phường quận Hai Bà Trưng-->
+    <string-array name="spinner_hbt">
+        <item>phường Nguyễn Du</item>
+        <item>phường Lê Đại Hành</item>
+        <item>phường Phạm Đình Hổ</item>
+        <item>phường Minh Khai</item>
+        <item>phường Bạch Đằng</item>
+        <item>phường Quỳnh Mai</item>
+    </string-array>
 
 </resources>

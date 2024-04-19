@@ -1,18 +1,17 @@
-package com.example.homeapp.fragment
+package com.example.work
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.R
 import com.example.homeapp.adapter.ItemListNameInterface
 import com.example.homeapp.adapter.StatusAdapter
 import com.example.homeapp.data.StatusDataClass
+import com.example.homeapp.databinding.ActivityListCateBinding
 import com.example.homeapp.databinding.FragmentListCateBinding
+import com.example.homeapp.fragment.DetailPostFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,35 +19,32 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 
+class ListCateActivity : AppCompatActivity() {
 
-class ListCateFragment : Fragment() {
-
-    lateinit var binding: FragmentListCateBinding
+    lateinit var binding: ActivityListCateBinding
     lateinit var database: DatabaseReference
 
     lateinit var statusAdapter: StatusAdapter
     var statusList = mutableListOf<StatusDataClass>()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentListCateBinding.inflate(layoutInflater, container, false)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityListCateBinding.inflate(layoutInflater)
 
-        val bundle = arguments
-        if (bundle != null) {
-            val title = bundle.getString("key")
+//        val bundle = arguments
+//        if (bundle != null) {
+//            val title = bundle.getString("key")
+//
+//            database = FirebaseDatabase.getInstance().reference
+//            readDataFromCategory(title!!)
+//        }
 
-            database = FirebaseDatabase.getInstance().reference
-            readDataFromCategory(title!!)
-        }
-        return binding.root
+        setContentView(R.layout.activity_list_cate)
     }
 
     fun readDataFromCategory(cate: String) {
         val query: Query = database.child("Post").orderByChild("cateId").equalTo(cate)
-        
+
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -108,7 +104,7 @@ class ListCateFragment : Fragment() {
             }
 
         })
-        val layoutManager = GridLayoutManager(context,2)
+        val layoutManager = GridLayoutManager(this,2)
         recyclerView.adapter = statusAdapter
         recyclerView.layoutManager = layoutManager
 
@@ -127,7 +123,7 @@ class ListCateFragment : Fragment() {
     }
 
     fun sendDataToFragment(fragment: Fragment) {
-        val fragmenManager = activity?.supportFragmentManager
+        val fragmenManager = supportFragmentManager
         val  fragmentTransaction = fragmenManager?.beginTransaction()
 
         fragmentTransaction?.replace(R.id.layoutFragment, fragment )

@@ -1,13 +1,19 @@
 package com.example.homeapp.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.homeapp.R
 import com.example.homeapp.adapter.ItemListAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
@@ -16,6 +22,7 @@ import com.example.homeapp.data.ListNameData
 import com.example.homeapp.data.PostData
 import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.databinding.FragmentHomeBinding
+import com.example.work.ListCateActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -33,15 +40,21 @@ class HomeFragment : Fragment() {
     lateinit var viewAdapter: StatusAdapter
     var postList = mutableListOf<StatusDataClass>()
 
+    private val startActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if (it.resultCode == Activity.RESULT_OK) {
+            getDataPost()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
-        nameList.add(ListNameData(R.drawable.ic_clean, "Dọn dẹp"))
-        nameList.add(ListNameData(R.drawable.ic_cooking, "Nấu ăn"))
-        nameList.add(ListNameData(R.drawable.ic_clean, "Sửa chữa"))
+        nameList.add(ListNameData(R.drawable.ic_cleaning, "Dọn dẹp"))
+        nameList.add(ListNameData(R.drawable.ic_cook, "Nấu ăn"))
+        nameList.add(ListNameData(R.drawable.tool, "Sửa chữa"))
         // Inflate the layout for this fragment
         setViewList()
         getDataPost()
@@ -76,6 +89,9 @@ class HomeFragment : Fragment() {
         fragmentListCate.arguments = bundle
         Log.d(javaClass.simpleName, "setOnClickList: $name")
         sendDataToFragment(fragmentListCate)
+
+//        val intent = Intent(context, ListCateActivity::class.java)
+//        intent.putExtra("key", name)
     }
 
     fun sendDataToFragment(fragment: Fragment){
@@ -100,7 +116,8 @@ class HomeFragment : Fragment() {
 
         })
 
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+//        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false )
+        val layoutManager = StaggeredGridLayoutManager(2,VERTICAL )
         postRecyclerView.adapter = viewAdapter
         postRecyclerView.layoutManager = layoutManager
     }
@@ -123,11 +140,9 @@ class HomeFragment : Fragment() {
                         val userPostId = postSnap.child("userPostId").value.toString()
                         val state = postSnap.child("state").value as String
 
-//                        val userNamePost = postSnap.child("userNamePost").value.toString()
                         Log.d(javaClass.simpleName, "onDataChange: $userPostId")
                         Log.d(javaClass.simpleName, "onDataChange: $address")
-//                        postList.add(StatusDataClass(postId,postName, state,userNamePost, price ))
-//                        setPost()
+
 
 //                         Truy vaasn tên theo idUser
                         val userReference = dataReference.child("Users")
@@ -137,8 +152,11 @@ class HomeFragment : Fragment() {
                                 var userNamePost = snapshot.child("userName").value as String
                                 Log.d(javaClass.simpleName, "onDataChange: $userNamePost")
                                 //Them du lieu
-                                postList.add(StatusDataClass(postId,postName, state,userNamePost, price ))
-                                setPost()
+                                if (state == "Đang chờ") {
+                                    postList.add(StatusDataClass(postId,postName, state,userNamePost, price ))
+                                    setPost()
+                                }
+
                             }
 
                             override fun onCancelled(error: DatabaseError) {
@@ -171,5 +189,6 @@ class HomeFragment : Fragment() {
         sendDataToFragment(fragmentDetailPostragment)
 
     }
+
 
 }

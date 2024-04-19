@@ -37,8 +37,55 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvName"
         app:layout_constraintStart_toStartOf="@id/tvName"
-        android:text="Điểm đánh gía"
+        android:layout_marginVertical="@dimen/dp8"
+        android:text="Chưa có điểm đánh giá"
         />
+
+    <ImageView
+        android:id="@+id/imvRate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tvRating"
+        app:layout_constraintTop_toTopOf="@id/tvRating"
+        app:layout_constraintBottom_toBottomOf="@id/tvRating"
+        android:layout_marginHorizontal="@dimen/dp16"
+        />
+    <ImageView
+        android:id="@+id/imvRate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate1"
+        app:layout_constraintTop_toTopOf="@id/tvRating"
+        app:layout_constraintBottom_toBottomOf="@id/tvRating"
+        />
+    <ImageView
+        android:id="@+id/imvRate3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate2"
+        app:layout_constraintTop_toTopOf="@id/tvRating"
+        app:layout_constraintBottom_toBottomOf="@id/tvRating"
+        />
+    <ImageView
+        android:id="@+id/imvRate4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate3"
+        app:layout_constraintTop_toTopOf="@id/tvRating"
+        app:layout_constraintBottom_toBottomOf="@id/tvRating"
+        />
+    <ImageView
+        android:id="@+id/imvRate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/imvRate4"
+        app:layout_constraintTop_toTopOf="@id/tvRating"
+        app:layout_constraintBottom_toBottomOf="@id/tvRating"
+        />
+
+
+
+
 
     <TextView
         android:id="@+id/tvManage"
@@ -49,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/dp16"
         android:layout_marginHorizontal="@dimen/dp16"
-        android:text="QUản lý đơn hàng"
+        android:text="Quản lý đơn hàng"
         android:textStyle="bold"
 
         />

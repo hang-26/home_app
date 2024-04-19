@@ -43,13 +43,14 @@ class StatusAdapter(
 
         var listPost = list[holder.adapterPosition]
         val bindingHolder = holder.binding
-        bindingHolder.tvUserPost.text = listPost.namePost
+//        bindingHolder.tvUserPost.text = listPost.namePost
         bindingHolder.tvContent.text = listPost.postName
         bindingHolder.tvState.text = listPost.state
         bindingHolder.tvPrice.text = listPost.price.toString()
 
         if (listPost.state == "Đang chờ") {
             bindingHolder.tvState.setBackgroundColor(Color.GRAY)
+//            bindingHolder.tvState.text = listPost.state
         } else if( listPost.state == "Đã được nhận") {
             bindingHolder.tvState.setBackgroundResource(R.color.coffee)
         }

@@ -1,5 +1,6 @@
 package com.example.homeapp.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
@@ -31,6 +33,13 @@ class PostedFragment : Fragment() {
     var statusList = mutableListOf<StatusDataClass>()
 
     lateinit var dataBaseReference: DatabaseReference
+
+    private val startActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if (it.resultCode == Activity.RESULT_OK) {
+            statusList.clear()
+            getData()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,8 +129,10 @@ class PostedFragment : Fragment() {
         var postId = listPost.postId
         var intent = Intent(context, CompleteActivity::class.java)
         intent.putExtra("id", postId)
-        startActivity(intent)
+        startActivityForResult.launch(intent)
     }
+
+
 
 
 }

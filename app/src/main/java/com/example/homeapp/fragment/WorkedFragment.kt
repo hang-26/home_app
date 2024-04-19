@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.R
 import com.example.homeapp.adapter.ItemListNameInterface
@@ -113,7 +114,7 @@ class WorkedFragment : Fragment() {
             }
 
         })
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = GridLayoutManager(context,2)
         recyclerView.adapter = myWorkAdapter
         recyclerView.layoutManager = layoutManager
 
@@ -125,6 +126,7 @@ class WorkedFragment : Fragment() {
         var intent = Intent(context, PaymentActivity::class.java)
         intent.putExtra("id", postId)
         startActivity(intent)
+        getData()
     }
 
 }

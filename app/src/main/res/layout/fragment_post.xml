@@ -52,8 +52,7 @@
        app:layout_constraintBottom_toBottomOf="@id/edtTime"
        app:layout_constraintTop_toTopOf="@id/edtTime"
        android:layout_marginHorizontal="@dimen/dp16"
-       android:text="Giờ"
-       />
+       android:text="Giờ" />
 
     <EditText
         android:id="@+id/tvMoney"
@@ -78,16 +77,45 @@
         android:layout_marginHorizontal="@dimen/dp16"
         android:text="VND"
         />
-    <EditText
-        android:id="@+id/tvAddress"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/tvAddressLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvMoney"
+        app:layout_constraintStart_toStartOf="@id/tvMoney"
+        android:text="Địa chỉ"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp18"
+        android:layout_marginVertical="@dimen/dp16"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerDistrict"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_edit_text"
         android:padding="15dp"
-        android:hint="Địa chỉ"
-        app:layout_constraintTop_toBottomOf="@id/tvMoney"
+        android:hint="Quận"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintTop_toBottomOf="@id/tvAddressLabel"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerWard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/spinnerDistrict"
+        app:layout_constraintTop_toBottomOf="@id/tvAddressLabel"
+        android:background="@drawable/custom_edit_text"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginHorizontal="@dimen/dp16"
+        app:layout_constraintWidth_percent="0.4"
+        android:padding="15dp"
         />
 
     <EditText
@@ -99,7 +127,7 @@
         android:background="@drawable/custom_edit_text"
         android:padding="15dp"
         android:hint="Mô tả"
-        app:layout_constraintTop_toBottomOf="@id/tvAddress"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDistrict"
         />
 
     <Button
