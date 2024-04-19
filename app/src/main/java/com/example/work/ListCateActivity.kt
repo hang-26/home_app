@@ -38,6 +38,10 @@ class ListCateActivity : AppCompatActivity() {
 //            database = FirebaseDatabase.getInstance().reference
 //            readDataFromCategory(title!!)
 //        }
+        var intent2 = intent
+        val title = intent2.getStringExtra("key")
+        database = FirebaseDatabase.getInstance().reference
+        readDataFromCategory(title!!)
 
         setContentView(R.layout.activity_list_cate)
     }

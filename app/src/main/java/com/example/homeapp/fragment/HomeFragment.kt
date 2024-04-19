@@ -92,6 +92,7 @@ class HomeFragment : Fragment() {
 
 //        val intent = Intent(context, ListCateActivity::class.java)
 //        intent.putExtra("key", name)
+//        startActivityForResult.launch(intent)
     }
 
     fun sendDataToFragment(fragment: Fragment){
