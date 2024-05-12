@@ -1,149 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.account.UserAccounActivity">
 
-    <ImageView
-        android:id="@+id/imvBackgroundAvatar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/house"
-        app:layout_constraintHeight_percent="0.3"
-        />
-
-    <ImageView
-        android:id="@+id/imvAvatar"
-        android:layout_width="@dimen/dp100"
-        android:layout_height="@dimen/dp100"
-        android:layout_marginTop="150dp"
-        app:layout_constraintEnd_toEndOf="@id/imvBackgroundAvatar"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@id/imvBackgroundAvatar"
-        app:layout_constraintTop_toTopOf="@id/imvBackgroundAvatar"
-        android:src="@drawable/icon_user"
-        android:background="@color/white"
-        />
-
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvAvatar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="User Name"
-        android:textStyle="bold"
-        android:textSize="@dimen/sp18"
-        android:textColor="@color/black"
-        />
-    <ImageView
-        android:id="@+id/imvAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvUserName"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/icon_location"
-        android:layout_marginHorizontal="@dimen/dp16"
-        />
-
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="location"
-        app:layout_constraintTop_toBottomOf="@id/tvUserName"
-        app:layout_constraintStart_toEndOf="@id/imvAddress"
-        app:layout_constraintTop_toTopOf="@id/imvAddress"
-        app:layout_constraintBottom_toBottomOf="@id/imvAddress"
-        android:layout_marginLeft="10dp"
-        />
-
-    <TextView
-        android:id="@+id/tvRate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imvAddress"
-        app:layout_constraintStart_toStartOf="@id/imvAddress"
-        android:text="Đánh giá: "
-        />
-    <ImageView
-        android:id="@+id/imvRate1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/tvRate"
-        app:layout_constraintTop_toTopOf="@id/tvRate"
-        app:layout_constraintBottom_toBottomOf="@id/tvRate"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:src="@drawable/rating_full"
-        />
-    <ImageView
-        android:id="@+id/imvRate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/imvRate1"
-        app:layout_constraintTop_toTopOf="@id/tvRate"
-        app:layout_constraintBottom_toBottomOf="@id/tvRate"
-        android:src="@drawable/rating_full"
-        />
-    <ImageView
-        android:id="@+id/imvRate3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/imvRate2"
-        app:layout_constraintTop_toTopOf="@id/tvRate"
-        app:layout_constraintBottom_toBottomOf="@id/tvRate"
-        android:src="@drawable/rating_full"
-        />
-    <ImageView
-        android:id="@+id/imvRate4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/imvRate3"
-        app:layout_constraintTop_toTopOf="@id/tvRate"
-        app:layout_constraintBottom_toBottomOf="@id/tvRate"
-        android:src="@drawable/rating_full"
-        />
-    <ImageView
-        android:id="@+id/imvRate5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/imvRate4"
-        app:layout_constraintTop_toTopOf="@id/tvRate"
-        app:layout_constraintBottom_toBottomOf="@id/tvRate"
-        android:src="@drawable/rating_full"
-        />
-
-
-    <TextView
-        android:id="@+id/tvYourPost"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvRate"
-        app:layout_constraintStart_toStartOf="@id/tvRate"
-        app:layout_constraintEnd_toEndOf="@id/tvRate"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:layout_marginVertical="@dimen/dp8"
-        android:text="Bài viết của bạn"
-        android:textSize="@dimen/sp18"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        />
+        >
+        <ImageView
+            android:id="@+id/imvBackgroundAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/house"
+            android:scaleType="fitXY"
+            />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvYourPost"
-        app:layout_constraintStart_toStartOf="@id/tvYourPost"
-        android:layout_marginHorizontal="@dimen/dp16"
-        android:layout_marginVertical="@dimen/dp8"
-        />
+        <ImageView
+            android:id="@+id/imvAvatar"
+            android:layout_width="@dimen/dp100"
+            android:layout_height="@dimen/dp100"
+            android:src="@drawable/icon_user"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-50dp"
+            android:background="@color/white"
+            android:layout_below="@id/imvBackgroundAvatar"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imvAvatar"
+            android:layout_centerHorizontal="true"
+            android:text="User Name"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp18"
+            android:textColor="@color/black"
+            />
+        <ImageView
+            android:id="@+id/imvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvUserName"
+            android:src="@drawable/icon_location"
+            android:layout_marginStart="@dimen/dp16"
+            />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:layout_toRightOf="@id/imvAddress"
+            android:layout_below="@id/tvUserName"
+            android:layout_marginLeft="8dp"
+            />
+
+        <TextView
+            android:id="@+id/tvRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imvAddress"
+            android:text="Đánh giá: "
+            android:layout_marginStart="@dimen/dp16"
+            />
+        <ImageView
+            android:id="@+id/imvRate1"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_toRightOf="@id/tvRate"
+            android:layout_below="@id/imvAddress"
+            android:src="@drawable/rating_full"
+            />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvYourPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvRate"
+            android:layout_marginVertical="@dimen/dp8"
+            android:layout_marginStart="@dimen/dp16"
+            android:text="Bài viết của bạn"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvYourPost"
+            android:layout_marginHorizontal="@dimen/dp16"
+            android:layout_marginVertical="@dimen/dp8"
+            />
+    </RelativeLayout>
+
+
+
+</ScrollView>

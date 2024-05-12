@@ -9,13 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.homeapp.R
+import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
 import com.example.homeapp.adapter.StatusAdapter
 import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.databinding.FragmentWorkedBinding
-import com.example.pay.CompleteActivity
-import com.example.pay.PaymentActivity
+import com.example.pay.WorkedActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -33,7 +32,8 @@ class WorkedFragment : Fragment() {
     lateinit var auth: FirebaseAuth
 
     var statusList = mutableListOf<StatusDataClass>()
-    lateinit var myWorkAdapter: StatusAdapter
+//    lateinit var myWorkAdapter: StatusAdapter
+    lateinit var myPostAdapter: ActiveAdapter
 
 
     override fun onCreateView(
@@ -103,7 +103,7 @@ class WorkedFragment : Fragment() {
 
     fun setRecyclerView() {
         val recyclerView = binding.recyclerView
-        myWorkAdapter = StatusAdapter(statusList, object : ItemListNameInterface
+        myPostAdapter = ActiveAdapter(statusList, object : ItemListNameInterface
         {
             override fun onClick(position: Int) {
                 setOnClickListPosition(position)
@@ -114,8 +114,8 @@ class WorkedFragment : Fragment() {
             }
 
         })
-        val layoutManager = GridLayoutManager(context,2)
-        recyclerView.adapter = myWorkAdapter
+        val layoutManager =  LinearLayoutManager(context)
+        recyclerView.adapter = myPostAdapter
         recyclerView.layoutManager = layoutManager
 
     }
@@ -123,7 +123,7 @@ class WorkedFragment : Fragment() {
     fun setOnClickListPosition(pos: Int) {
         var listPost = statusList[pos]
         var postId = listPost.postId
-        var intent = Intent(context, PaymentActivity::class.java)
+        var intent = Intent(context, WorkedActivity::class.java)
         intent.putExtra("id", postId)
         startActivity(intent)
         getData()

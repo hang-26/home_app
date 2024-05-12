@@ -4,13 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.R
 import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
 import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.databinding.ActivityUserAccounBinding
-import com.example.pay.CompleteActivity
+import com.example.pay.PostActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -137,10 +138,12 @@ class UserAccounActivity : AppCompatActivity() {
     fun setOnClickListPosition(pos: Int) {
         var listPost = statusList[pos]
         var postId = listPost.postId
-        var intent = Intent(this, CompleteActivity::class.java)
+        var intent = Intent(this, PostActivity::class.java)
         intent.putExtra("id", postId)
         startActivity(intent)
     }
+
+
 
 
 }

@@ -61,8 +61,8 @@ class DetailPostFragment : Fragment() {
 
 
                 binding.tvContent.text = postContent
-                binding.tvPrice.text = price
-                binding.tvTimeWork.setText("$timeString giờ")
+                binding.tvPrice.text = "Giá: $price"
+                binding.tvTimeWork.setText("Thời gian: $timeString giờ")
                 binding.tvAddress.text = address
                 binding.tvCate.text = cate
                 if (describe.isEmpty()) {
@@ -120,6 +120,7 @@ class DetailPostFragment : Fragment() {
                         .addOnCompleteListener {
                             Toast.makeText(context, "Công việc đã được bạn nhận", Toast.LENGTH_SHORT).show()
                             binding.tvNumUser.visibility = View.VISIBLE
+                            binding.btnWork.visibility = View.GONE
                         }
 
             }
@@ -129,6 +130,14 @@ class DetailPostFragment : Fragment() {
             var intent: Intent = Intent(context, UserAccounActivity::class.java)
             intent.putExtra("userPostId", userPostId)
             startActivity(intent)
+        }
+
+        binding.imvIconBack.setOnClickListener {
+            // Trở lại Fragment trước đó khi biểu tượng được nhấp
+            // Lấy ra FragmentManager của hoạt động chứa Fragment
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.popBackStack()
+//            requireContext().onBackPressed()
         }
 
 
@@ -162,5 +171,12 @@ class DetailPostFragment : Fragment() {
         }
     }
 
+    fun sendDataToFragment(fragment: Fragment){
+        val fragmentManager = activity?.supportFragmentManager
+        val fragmentTransacion = fragmentManager?.beginTransaction()
+
+        fragmentTransacion?.replace(R.id.layoutFragment, fragment)
+        fragmentTransacion?.commit()
+    }
 
 }

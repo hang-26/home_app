@@ -8,28 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.homeapp.R
 import com.example.homeapp.adapter.ItemListAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
 import com.example.homeapp.adapter.StatusAdapter
 import com.example.homeapp.data.ListNameData
-import com.example.homeapp.data.PostData
 import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.databinding.FragmentHomeBinding
-import com.example.work.ListCateActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import org.intellij.lang.annotations.JdkConstants.VerticalScrollBarPolicy
-import org.w3c.dom.NameList
 
 class HomeFragment : Fragment() {
 
@@ -61,6 +54,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Nơi để đặt mã xử lý khi Fragment trở lại trạng thái hoạt động
+        Log.d("PreviousFragment", "Fragment resumed")
+    }
     fun setViewList() {
         val recyclerViewList = binding.recyclerViewList
 
@@ -90,6 +88,8 @@ class HomeFragment : Fragment() {
         Log.d(javaClass.simpleName, "setOnClickList: $name")
         sendDataToFragment(fragmentListCate)
 
+//        var listPosition = nameList[position]
+//        var name = listPosition.title
 //        val intent = Intent(context, ListCateActivity::class.java)
 //        intent.putExtra("key", name)
 //        startActivityForResult.launch(intent)
@@ -100,6 +100,7 @@ class HomeFragment : Fragment() {
         val fragmentTransacion = fragmentManager?.beginTransaction()
 
         fragmentTransacion?.replace(R.id.layoutFragment, fragment)
+        fragmentTransacion?.addToBackStack(null)
         fragmentTransacion?.commit()
     }
 
@@ -118,10 +119,14 @@ class HomeFragment : Fragment() {
         })
 
 //        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false )
-        val layoutManager = StaggeredGridLayoutManager(2,VERTICAL )
+        val layoutManager = GridLayoutManager(context, 2)
         postRecyclerView.adapter = viewAdapter
         postRecyclerView.layoutManager = layoutManager
+
     }
+
+
+
 
     fun getDataPost() {
         var dataReference: DatabaseReference
@@ -184,6 +189,8 @@ class HomeFragment : Fragment() {
         var listPosition = postList[pos]
         var posId = listPosition.postId
         Log.d(javaClass.simpleName, "setOnClickListPosition: $posId")
+        var intent = Intent(context, fragmentDetailPostragment::class.java)
+        intent.putExtra("id", posId)
         var bundle: Bundle = Bundle()
         bundle.putString("id", posId)
         fragmentDetailPostragment.arguments = bundle

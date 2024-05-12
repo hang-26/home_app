@@ -71,7 +71,8 @@ class AccountFragment : Fragment() {
                     var rateString = snapshot.child("rate"). value
 
                     binding.tvName.text = userName
-                    binding.tvRating.text = "Đánh giá $rateString"
+                    var stringRate = String.format("%.1f", rateString)
+                    binding.tvRating.text = "Đánh giá $stringRate"
                     if (rateString != null) {
                         var rate = rateString.toString().toFloat()
                         setRate(rate)

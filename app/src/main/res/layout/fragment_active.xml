@@ -22,6 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/item_button_post"
         android:background="@color/custom_color_secondary"
+        android:textAlignment="center"
         />
 
 

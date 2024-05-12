@@ -45,20 +45,28 @@ class StatusAdapter(
         val bindingHolder = holder.binding
 //        bindingHolder.tvUserPost.text = listPost.namePost
         bindingHolder.tvContent.text = listPost.postName
-        bindingHolder.tvState.text = listPost.state
-        bindingHolder.tvPrice.text = listPost.price.toString()
 
-        if (listPost.state == "Đang chờ") {
-            bindingHolder.tvState.setBackgroundColor(Color.GRAY)
-//            bindingHolder.tvState.text = listPost.state
-        } else if( listPost.state == "Đã được nhận") {
-            bindingHolder.tvState.setBackgroundResource(R.color.coffee)
-        }
-        else if(listPost.state == "Đã hoàn thành") {
-            bindingHolder.tvState.setBackgroundResource(R.color.custom_color_content)
-        } else {
-            bindingHolder.tvState.setBackgroundResource(R.color.custom_color_secondary)
-        }
+//        bindingHolder.tvState.text = listPost.state
+        bindingHolder.tvPrice.text = listPost.price.toString().replace(".0", "")
+
+//        if (listPost.state == "Đang chờ") {
+//            bindingHolder.tvState.setBackgroundResource(R.color.custom_color_content1)
+//            bindingHolder.tvState.setTextColor(Color.parseColor("#202020"))
+////            bindingHolder.tvState.text = listPost.state
+//        } else if( listPost.state == "Đã được nhận") {
+//            bindingHolder.tvState.setBackgroundResource(R.color.custom_color_content)
+//            bindingHolder.tvState.setTextColor(Color.parseColor("#575454"))
+//
+//
+//        }
+//        else if(listPost.state == "Đã hoàn thành") {
+//            bindingHolder.tvState.setBackgroundResource(R.color.custom_color_content2)
+//            bindingHolder.tvState.setTextColor(Color.parseColor("#FFFFFFFF"))
+//
+//        } else {
+//            bindingHolder.tvState.setBackgroundResource(R.color.custom_color_secondary)
+//            bindingHolder.tvState.setTextColor(Color.parseColor("#FFFFFFFF"))
+//        }
 
 
         holder.itemView.setOnClickListener {

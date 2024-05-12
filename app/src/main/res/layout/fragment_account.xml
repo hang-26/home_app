@@ -15,7 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
+        android:elevation="@dimen/dp20"
         android:src="@drawable/icon_user"
+        style="@style/CardView"
         />
 
     <TextView
@@ -27,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
         android:layout_marginHorizontal="@dimen/dp16"
         android:text="UserName"
-        android:textSize="16dp"
+        android:textSize="@dimen/_14sp"
         android:textStyle="bold"
         />
 
@@ -38,13 +40,14 @@
         app:layout_constraintTop_toBottomOf="@id/tvName"
         app:layout_constraintStart_toStartOf="@id/tvName"
         android:layout_marginVertical="@dimen/dp8"
+        android:textSize="@dimen/_13sp"
         android:text="Chưa có điểm đánh giá"
         />
 
     <ImageView
         android:id="@+id/imvRate1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dp20"
+        android:layout_height="@dimen/dp20"
         app:layout_constraintStart_toEndOf="@id/tvRating"
         app:layout_constraintTop_toTopOf="@id/tvRating"
         app:layout_constraintBottom_toBottomOf="@id/tvRating"
@@ -86,7 +89,6 @@
 
 
 
-
     <TextView
         android:id="@+id/tvManage"
         android:layout_height="wrap_content"
@@ -97,6 +99,8 @@
         android:layout_marginVertical="@dimen/dp16"
         android:layout_marginHorizontal="@dimen/dp16"
         android:text="Quản lý đơn hàng"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sp"
         android:textStyle="bold"
 
         />
@@ -108,8 +112,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/dp8"
-        android:layout_marginHorizontal="@dimen/dp16"
+        android:paddingHorizontal="@dimen/_16sp"
+        android:paddingVertical="@dimen/dp8"
+        android:textSize="@dimen/_13sp"
+        android:background="@drawable/custom_content"
         android:text="Bài đã đăng"/>
+
 
     <TextView
         android:id="@+id/tvWorked"
@@ -118,8 +126,10 @@
         app:layout_constraintTop_toBottomOf="@id/tvPosted"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginVertical="@dimen/dp8"
-        android:layout_marginHorizontal="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp8"
+        android:paddingHorizontal="@dimen/_16sp"
+        android:paddingVertical="@dimen/dp8"
+        android:background="@drawable/custom_content"
         android:text="Công việc đã nhận"/>
     <Button
         android:id="@+id/btSignOut"
@@ -130,6 +140,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvWorked"
         android:layout_marginHorizontal="@dimen/dp16"
         android:backgroundTint="@color/custom_color_secondary"
+        android:textSize="@dimen/_14sp"
         android:elevation="@dimen/dp8"
         />
 

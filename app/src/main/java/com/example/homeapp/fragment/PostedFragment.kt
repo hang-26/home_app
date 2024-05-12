@@ -12,10 +12,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.adapter.ActiveAdapter
 import com.example.homeapp.adapter.ItemListNameInterface
-import com.example.homeapp.adapter.StatusAdapter
 import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.databinding.FragmentPostedBinding
-import com.example.pay.CompleteActivity
+import com.example.pay.PostActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -127,7 +126,7 @@ class PostedFragment : Fragment() {
     fun setOnClickListPosition(pos: Int) {
         var listPost = statusList[pos]
         var postId = listPost.postId
-        var intent = Intent(context, CompleteActivity::class.java)
+        var intent = Intent(context, PostActivity::class.java)
         intent.putExtra("id", postId)
         startActivityForResult.launch(intent)
     }

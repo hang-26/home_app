@@ -1,5 +1,6 @@
 package com.example.homeapp.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -43,8 +44,15 @@ class ListCateFragment : Fragment() {
             database = FirebaseDatabase.getInstance().reference
             readDataFromCategory(title!!)
         }
+
+        binding.imvBackIcon.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.popBackStack()
+        }
         return binding.root
     }
+
+
 
     fun readDataFromCategory(cate: String) {
         val query: Query = database.child("Post").orderByChild("cateId").equalTo(cate)
@@ -124,6 +132,7 @@ class ListCateFragment : Fragment() {
         fragmentDetailPostragment.arguments = bundle
         sendDataToFragment(fragmentDetailPostragment)
 
+
     }
 
     fun sendDataToFragment(fragment: Fragment) {
@@ -131,6 +140,7 @@ class ListCateFragment : Fragment() {
         val  fragmentTransaction = fragmenManager?.beginTransaction()
 
         fragmentTransaction?.replace(R.id.layoutFragment, fragment )
+        fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }
 

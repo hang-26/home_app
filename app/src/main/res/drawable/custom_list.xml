@@ -4,13 +4,9 @@
     <solid android:color="@color/white"/>
 
     <stroke
-        android:dashGap="@dimen/dp16"
         android:color="@color/white"
         android:dashWidth="2dp"
         />
-    <corners
-       android:radius="@dimen/dp16"
-
-        />
+    <corners android:radius="@dimen/dp8"/>
 
 </shape>

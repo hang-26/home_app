@@ -21,13 +21,14 @@ class UserData
         this.numberPhone = numberPhone
         this.rate = rate
     }
-    constructor(userName: String, userDate: String, userAddress: String, numberPhone: String)
+    constructor(userName: String, userDate: String, userAddress: String, numberPhone: String, rate: Float)
     {
 
         this.userName = userName
         this.userDate = userDate
         this.userAddress = userAddress
         this.numberPhone = numberPhone
+        this.rate = rate
 
     }
     constructor(userId: String, userName: String, userDate: String, userAddress: String, numberPhone: String)

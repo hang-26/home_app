@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homeapp.MainActivity
 import com.example.homeapp.R
@@ -18,7 +19,9 @@ import com.example.homeapp.data.StatusDataClass
 import com.example.homeapp.data.UserData
 import com.example.homeapp.databinding.ActivityInfoAccountBinding
 import com.example.homeapp.databinding.UserEditBinding
-import com.example.pay.CompleteActivity
+import com.example.homeapp.fragment.PostFragment
+import com.example.pay.PostActivity
+import com.example.work.AddPostActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -33,6 +36,11 @@ class InfoAccountActivity : AppCompatActivity() {
     lateinit var binding:ActivityInfoAccountBinding
     lateinit var auth: FirebaseAuth
     lateinit var databaseReference: DatabaseReference
+    var uRate: String? = null
+    var name: String? = null
+    var numberPhone: String? = null
+    var userAddress: String? = null
+    var userAge: String? = null
 
     lateinit var myPostAdapter: ActiveAdapter
     var statusList = mutableListOf<StatusDataClass>()
@@ -59,14 +67,17 @@ class InfoAccountActivity : AppCompatActivity() {
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    var name = snapshot.child("userName").value as String
-                    var numberPhone = snapshot.child("numberPhone").value as String
+                    name = snapshot.child("userName").value as String
+                    numberPhone = snapshot.child("numberPhone").value as String
                     var rate = snapshot.child("rate").value
-                    var address = snapshot.child("userAddress").value as String
+                    uRate = rate.toString()
+                    userAddress = snapshot.child("userAddress").value as String
+                    userAge = snapshot.child("userDate").value as String
                     Log.d(javaClass.simpleName, "onDataChange: $name")
-                    binding.tvAddress.text = address
+                    binding.tvAddress.text = userAddress
                     binding.tvPhoneNumber.text = numberPhone
-                    binding.tvRate.text = "Đánh giá: $rate"
+                    var stringRate = String.format("%.1f", rate)
+                    binding.tvRate.text = "Đánh giá: $stringRate"
                     binding.tvUserName.text = name
 
 
@@ -138,6 +149,12 @@ class InfoAccountActivity : AppCompatActivity() {
         binding.imvSetting.setOnClickListener {
             popupMenu(it)
         }
+        binding.tvAdd.setOnClickListener {
+
+            var intent = Intent(this, AddPostActivity::class.java)
+            startActivity(intent)
+
+        }
     }
 
     fun setRecyclerView() {
@@ -163,7 +180,7 @@ class InfoAccountActivity : AppCompatActivity() {
     fun setOnClickListPosition(pos: Int) {
         var listPost = statusList[pos]
         var postId = listPost.postId
-        var intent = Intent(this, CompleteActivity::class.java)
+        var intent = Intent(this, PostActivity::class.java)
         intent.putExtra("id", postId)
         startActivity(intent)
     }
@@ -196,7 +213,7 @@ class InfoAccountActivity : AppCompatActivity() {
         var userName = bindingEdit.edtUserName
         var age = bindingEdit.edtAge
         var address = bindingEdit.edtAddress
-        var numberPhone = bindingEdit.edtPhone
+        var numberPhone1 = bindingEdit.edtPhone
 
 
 
@@ -207,9 +224,23 @@ class InfoAccountActivity : AppCompatActivity() {
             var uName = userName.text.toString()
             var uAge = age.text.toString()
             var uAddress = address.text.toString()
-            var uNumberPhone = numberPhone.text.toString()
+            var uNumberPhone = numberPhone1.text.toString()
 
-            updateAccount(uName, uAge, uAddress, uNumberPhone)
+            if (uName.isEmpty()) {
+                uName = name!!
+            }
+            if (uAge.isEmpty()) {
+                uAge = userAge!!
+            }
+            if (uAddress.isEmpty()) {
+                uAddress = userAddress!!
+            }
+            if (uNumberPhone.isEmpty()) {
+                uNumberPhone = numberPhone!!
+            }
+
+
+            updateAccount(uName, uAge, uRate!!,uAddress, uNumberPhone)
         }
         editUser.setNegativeButton("Hủy") {
                 dialog,_->
@@ -221,9 +252,10 @@ class InfoAccountActivity : AppCompatActivity() {
         editUser.show()
     }
 
-    fun updateAccount(userName: String, age: String, address: String, numberPhone: String) {
+    fun updateAccount(userName: String, age: String, uRate: String, address: String, numberPhone: String) {
         var uId = auth.currentUser?.uid
-        var  user = UserData(userName,age, address,numberPhone)
+        var rate = uRate.toFloat()
+        var  user = UserData(userName,age, address,numberPhone, rate)
         var update = databaseReference.child("Users").child(uId!!).setValue(user)
         update.addOnCompleteListener {
             if (it.isSuccessful) {
@@ -233,5 +265,12 @@ class InfoAccountActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun sendDataToFragment(fragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransacion = fragmentManager?.beginTransaction()
+        fragmentTransacion?.replace(R.id.layoutFragment, fragment)
+        fragmentTransacion?.commit()
     }
 }

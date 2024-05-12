@@ -14,7 +14,7 @@
         android:layout_marginVertical="@dimen/dp30"
         android:text="Sửa thông tin"
         android:textStyle="bold"
-        android:textSize="@dimen/sp25"
+        android:textSize="@dimen/_14sp"
         />
     <EditText
         android:id="@+id/edtUserName"
@@ -25,6 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="@dimen/dp8"
         android:layout_marginHorizontal="@dimen/dp16"
+        android:textSize="@dimen/_14sp"
         android:hint="User Name"
         />
     <EditText
@@ -36,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/edtUserName"
         android:layout_marginHorizontal="@dimen/dp16"
         android:layout_marginVertical="@dimen/dp8"
+        android:textSize="@dimen/_14sp"
         android:hint="Tuổi"
         />
     <EditText
@@ -48,6 +50,7 @@
         android:layout_marginVertical="@dimen/dp8"
         android:layout_marginHorizontal="@dimen/dp16"
         android:hint="Địa chỉ"
+        android:textSize="@dimen/_14sp"
         />
     <EditText
         android:id="@+id/edtPhone"
@@ -60,6 +63,7 @@
         android:layout_marginVertical="@dimen/dp8"
         android:hint="Số điên thoại"
         android:inputType="number"
+        android:textSize="@dimen/_14sp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,7 @@ package com.example.pay
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
-import com.example.homeapp.R
-import com.example.homeapp.databinding.ActivityPaymentBinding
+import com.example.homeapp.databinding.ActivityWorkedBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,14 +11,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class PaymentActivity : AppCompatActivity() {
-    lateinit var binding: ActivityPaymentBinding
+class WorkedActivity : AppCompatActivity() {
+    lateinit var binding: ActivityWorkedBinding
     lateinit var detailPost: DatabaseReference
     lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPaymentBinding.inflate(layoutInflater)
+        binding = ActivityWorkedBinding.inflate(layoutInflater)
         var intent = intent
         var id  = intent.getStringExtra("id")
         getDataPost(id!!)

@@ -35,6 +35,7 @@
         android:paddingLeft="@dimen/dp40"
         android:background="@drawable/custom_edit_text"
         android:hint="user name"
+        android:textSize="@dimen/_13sp"
 
         />
     <ImageView
@@ -63,7 +64,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/et_user_name" />
+        app:layout_constraintTop_toBottomOf="@id/et_user_name"
+        android:textSize="@dimen/_13sp"
+        />
     <ImageView
         android:id="@+id/ivPassword"
         android:layout_width="wrap_content"
@@ -110,9 +113,9 @@
         app:layout_constraintEnd_toEndOf="@id/et_pass_work"
         android:text="Don't have an account?"
         android:textColor="@color/white"
-        android:textSize="@dimen/dp16"
         android:textStyle="italic"
         android:layout_marginRight="50dp"
+        android:textSize="@dimen/_13sp"
         />
 
     <TextView
@@ -123,10 +126,10 @@
         app:layout_constraintTop_toTopOf="@id/tvQuestionAccount"
         android:layout_marginHorizontal="@dimen/dp8"
         android:text="Signup"
-        android:textSize="@dimen/dp16"
         android:fontFamily="casual"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:textSize="@dimen/_14sp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,23 +7,22 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.homeapp.R
-import com.example.homeapp.databinding.ActivityCompleteBinding
-import com.example.homeapp.databinding.ActivityPaymentBinding
+import com.example.homeapp.databinding.ActivityPostBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class CompleteActivity : AppCompatActivity() {
-    lateinit var binding: ActivityCompleteBinding
+class PostActivity : AppCompatActivity() {
+    lateinit var binding: ActivityPostBinding
     lateinit var detailPost: DatabaseReference
     var rateNum: Int = 0
     var rateUser: Float = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCompleteBinding.inflate(layoutInflater)
+        binding = ActivityPostBinding.inflate(layoutInflater)
         var intent = intent
         var id = intent.getStringExtra("id")
         Log.d(javaClass.simpleName, "onCreate: $id")
@@ -86,11 +85,13 @@ class CompleteActivity : AppCompatActivity() {
                     })
 
                     if (state == "Đã được nhận") {
+                        binding.radioGroupRate.visibility = View.VISIBLE
                         binding.btnConfirm.setText("Xác nhận hoàn thành công việc")
                         binding.btnConfirm.setOnClickListener {
 
                             setEventPay(postId)
                             upDateUserRate(userWorkIdValue)
+
                         }
                     } else {
                         binding.btnConfirm.visibility = View.GONE
@@ -206,7 +207,7 @@ class CompleteActivity : AppCompatActivity() {
                 var userData = dataRateUser.child("Users").child(idUser)
                 var updateDataRate = userData.child("rate").setValue(rateUser)
                 updateDataRate.addOnSuccessListener {
-                    Toast.makeText(this@CompleteActivity, "đã thay đổi đánh giá tới người dùng", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PostActivity, "đã thay đổi đánh giá tới người dùng", Toast.LENGTH_SHORT).show()
                 }
             }
 
